@@ -31,7 +31,7 @@ class Usuario {
     }
 
     set correo(correo) {
-        var regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        var regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (regexCorreo.test(correo)) {
             this._correo = correo;
         } else {
@@ -39,7 +39,7 @@ class Usuario {
             this._correo = null;
         }
     }
-
+    
     get id() {
         return this._id;
     }

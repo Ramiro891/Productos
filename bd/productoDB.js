@@ -43,15 +43,16 @@ class ProductoDB extends ConectarBD {
         const sql = `SELECT * FROM productos WHERE id=${idProducto}`;
         try {
             await this.conectarMySQL();
-            const [producto] = await this.conexion.execute(sql);
+            const [result] = await this.conexion.execute(sql);
             await this.cerrarConexion();
             console.log("Producto recuperado correctamente");
-            return producto;
+            return result.length ? result[0] : null;  // Retorna el primer producto si existe
         } catch (error) {
             console.error("Error al recuperar el producto: " + error);
             console.error(sql);
         }
     }
+    
 
     async editarProducto(producto) {
         const sql = `

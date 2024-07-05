@@ -103,7 +103,7 @@ ruta.get("/editarProducto/:idproducto", async (req, res) => {
     try {
         const producto = await productoDB.buscarProductoPorID(req.params.idproducto);
         if (producto) {
-            res.render("editarProducto", producto);
+            res.render("editarProducto", { producto });
         } else {
             res.status(404).send("Producto no encontrado");
         }
@@ -117,12 +117,8 @@ ruta.get("/editarProducto/:idproducto", async (req, res) => {
 ruta.post("/editarProducto", async (req, res) => {
     const productoDB = new ProductoDB();
     const producto1 = new ProductoClase(req.body);
-    if (producto1.nombre != undefined && producto1.descripcion != undefined && producto1.precio != undefined && producto1.stock != undefined) {
         await productoDB.editarProducto(req.body);
-        res.redirect("/mostrarProductos");
-    } else {
-        res.render("error");
-    }
+        res.redirect("/productos");
 });
 
 // Borrar producto
