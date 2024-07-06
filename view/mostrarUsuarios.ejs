@@ -9,20 +9,24 @@
 <body>
     <h1>Usuarios registrados</h1>
     <div class="contenedor">
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th> 
-                <th>Usuario</th>
-                <th>Celular</th>
-                <th>Correo</th>
-                <th>Editar / Borrar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <%
-            usuariosCorrectos.forEach((usuario)=>{
-                %>
+        <!-- Botones para agregar usuarios y productos -->
+        <div class="buttons">
+            <a href="/agregarUsuario" class="btn">Agregar Usuario</a>
+            <a href="/productos" class="btn">Ver Productos</a>
+            <a href="/agregarProducto" class="btn">Agregar Producto</a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th> 
+                    <th>Usuario</th>
+                    <th>Celular</th>
+                    <th>Correo</th>
+                    <th>Editar / Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% usuariosCorrectos.forEach((usuario) => { %>
                 <tr>
                     <td><%= usuario.idusuario %></td>
                     <td><%= usuario.nombre %></td>
@@ -33,9 +37,7 @@
                         <a href="/borrarUsuario/<%= usuario.idusuario %>">Borrar</a>
                     </td>
                 </tr>
-                <%
-                });
-                %>
+                <% }); %>
             </tbody>
         </table>    
     </div>
